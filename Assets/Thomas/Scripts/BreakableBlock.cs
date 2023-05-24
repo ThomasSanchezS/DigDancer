@@ -6,18 +6,22 @@ public class BreakableBlock : MonoBehaviour
     public enum BlockType
     {
         BlockA,
-        BlockB,
-        BlockC
+        BlockS,
+        BlockD
     }
-    public Transform playerPos;
+    private GameObject player;
     public BlockType blockType;
     public float reach = 2f;
-
+    
+    private void Start() {
+        
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(Vector2.Distance(playerPos.position, transform.position) >= reach){
+            if(Vector2.Distance(player.transform.position, transform.position) >= reach){
                 return;
             }
             ToolManager toolManager = FindObjectOfType<ToolManager>();
@@ -30,7 +34,7 @@ public class BreakableBlock : MonoBehaviour
                 // Eliminar el bloque u realizar cualquier otra acción deseada
                 Destroy(gameObject);
             }
-            else if (toolManager.selectedTool == ToolType.Pickaxe && blockType == BlockType.BlockB)
+            else if (toolManager.selectedTool == ToolType.Pickaxe && blockType == BlockType.BlockS)
             {
                 // Lógica para romper el bloque con el pico
                 Debug.Log("¡Has roto el bloque con el pico!");
@@ -38,7 +42,7 @@ public class BreakableBlock : MonoBehaviour
                 // Eliminar el bloque u realizar cualquier otra acción deseada
                 Destroy(gameObject);
             }
-            else if (toolManager.selectedTool == ToolType.ElectricDrill && blockType == BlockType.BlockC)
+            else if (toolManager.selectedTool == ToolType.ElectricDrill && blockType == BlockType.BlockD)
             {
                 // Lógica para romper el bloque con el martillo eléctrico
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
