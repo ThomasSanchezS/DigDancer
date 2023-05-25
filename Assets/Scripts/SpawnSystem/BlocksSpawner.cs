@@ -11,11 +11,11 @@ public class BlocksSpawner : MonoBehaviour
     [SerializeField]
     private List<BlocksPool> BlockPools = new List<BlocksPool>();
 
-    private bool theGameIsStarting;
+    private int dificultyLevel;
 
     void Start()
     {
-        theGameIsStarting = true;
+        dificultyLevel = 0;
         SpawnBlocksInWave();
     }
 
@@ -38,26 +38,38 @@ public class BlocksSpawner : MonoBehaviour
     //Spawn a block
     private void Spawn()
     {
-        int typeOfBlock;
+        int typeOfBlock = CheckDificultyLevel();
 
-        if (theGameIsStarting) 
-        {
-            typeOfBlock = Random.Range(0, 3);
-        }
-
-        else 
-        {
-            typeOfBlock = Random.Range(0, 7);
-        }
-
-        GameObject block = null;
-
-        block = BlockPools[typeOfBlock].GetPooledObject();
+        GameObject block = BlockPools[typeOfBlock].GetPooledObject();
         block.transform.position = transform.position;
         block.SetActive(true);
 
         //move after spawn
         Move();
+    }
+
+    //Use a diferrent range depending on the actual dificulty level, with a higher range appear more kinds of blocks
+    private int CheckDificultyLevel()
+    {
+        int typeOfBlock;
+
+        switch (dificultyLevel)
+        {
+            case 1:
+                typeOfBlock = Random.Range(0, 4);
+                break;
+            case 2:
+                typeOfBlock = Random.Range(0, 5);
+                break;
+            case 3:
+                typeOfBlock = Random.Range(0, 6);
+                break;
+            default:
+                typeOfBlock = Random.Range(0, 3);
+                break;
+        }
+
+        return typeOfBlock;
     }
 
     //to move after spawn
@@ -68,6 +80,6 @@ public class BlocksSpawner : MonoBehaviour
 
     public void AdvanceTheGame()
     {
-        theGameIsStarting = false;
+        dificultyLevel++;
     }
 }
