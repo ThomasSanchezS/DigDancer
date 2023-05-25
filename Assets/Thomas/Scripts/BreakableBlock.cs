@@ -7,7 +7,10 @@ public class BreakableBlock : MonoBehaviour
     {
         BlockA,
         BlockS,
-        BlockD
+        BlockD,
+        BlockQ,
+        BlockW,
+        BlockE
     }
     private GameObject player;
     public BlockType blockType;
@@ -47,6 +50,29 @@ public class BreakableBlock : MonoBehaviour
                 // Lógica para romper el bloque con el martillo eléctrico
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
 
+                // Eliminar el bloque u realizar cualquier otra acción deseada
+                Destroy(gameObject);
+            }
+            else if (toolManager.selectedTool == ToolType.Axe && blockType == BlockType.BlockQ)
+            {
+                 // Lógica para romper el bloque con el hacha
+                Debug.Log("Has roto el bloque con el hacha");
+
+                // Eliminar el bloque u realizar cualquier otra acción deseada
+                Destroy(gameObject);
+            }
+            else if (toolManager.selectedTool == ToolType.Hammer && blockType == BlockType.BlockW)
+            {
+                // Lógica para romper el bloque con el martillo
+                Debug.Log("¡Has roto el bloque con el martillo!");
+
+                // Eliminar el bloque u realizar cualquier otra acción deseada
+                Destroy(gameObject);
+            }
+            else if (toolManager.selectedTool == ToolType.Dinamite && blockType == BlockType.BlockE)
+            {
+                // Lógica para romper el bloque con el dinamites
+                Debug.Log("¡Has roto el bloque con el dinamites!");
                 // Eliminar el bloque u realizar cualquier otra acción deseada
                 Destroy(gameObject);
             }

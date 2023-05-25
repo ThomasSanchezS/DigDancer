@@ -5,7 +5,10 @@ public enum ToolType
 {
     Shovel,
     Pickaxe,
-    ElectricDrill
+    ElectricDrill,
+    Axe,
+    Hammer,
+    Dinamite
 }
 
 public class ToolManager : MonoBehaviour
@@ -27,6 +30,18 @@ public class ToolManager : MonoBehaviour
             case KeyCode.D:
                 selectedTool = ToolType.ElectricDrill;
                 Debug.Log("Electric Drill");
+                break;
+            case KeyCode.Q:
+                selectedTool = ToolType.Axe;
+                Debug.Log("Axe");
+                break;
+            case KeyCode.W:
+                selectedTool = ToolType.Hammer;
+                Debug.Log("Hammer");
+                break;
+            case KeyCode.E:
+                selectedTool = ToolType.Dinamite;
+                Debug.Log("Dinamite");
                 break;
         }
     }
