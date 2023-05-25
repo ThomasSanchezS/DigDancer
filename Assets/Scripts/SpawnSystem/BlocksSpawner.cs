@@ -6,73 +6,80 @@ using UnityEngine.Pool;
 public class BlocksSpawner : MonoBehaviour
 {
     [SerializeField]
-    private List<BlocksPool> ABlocks = new List<BlocksPool>();
+    private int distanceToMove = 1, numberOfBlocksSpawnPerWave =20; 
+
     [SerializeField]
-    private List<BlocksPool> SBlocks = new List<BlocksPool>();
-    [SerializeField]
-    private List<BlocksPool> DBlocks = new List<BlocksPool>();
+    private List<BlocksPool> BlockPools = new List<BlocksPool>();
+
+    private int dificultyLevel;
 
     void Start()
     {
-        Spawn();
+        dificultyLevel = 0;
+        SpawnBlocksInWave();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SpawnBlocksInWave();
+        }
+    }
+
+    private void SpawnBlocksInWave()
+    {
+        for (int i = 0; i < numberOfBlocksSpawnPerWave; i++)
+        {
             Spawn();
         }
     }
 
-    //Spawn the groups of platforms
+    //Spawn a block
     private void Spawn()
     {
-        int groupType = Random.Range(1, 4);
+        int typeOfBlock = CheckDificultyLevel();
 
-        //TEST
-        Debug.Log("Random number " + groupType);
+        GameObject block = BlockPools[typeOfBlock].GetPooledObject();
+        block.transform.position = transform.position;
+        block.SetActive(true);
 
-        switch (groupType)
+        //move after spawn
+        Move();
+    }
+
+    //Use a diferrent range depending on the actual dificulty level, with a higher range appear more kinds of blocks
+    private int CheckDificultyLevel()
+    {
+        int typeOfBlock;
+
+        switch (dificultyLevel)
         {
             case 1:
-                GameObject GroupOfPlatforms1 = ABlocks[Random.Range(0, ABlocks.Count)].GetPooledObject();
-                if (GroupOfPlatforms1 != null)
-                {
-                    GroupOfPlatforms1.transform.position = transform.position;
-                    GroupOfPlatforms1.SetActive(true);
-                }
+                typeOfBlock = Random.Range(0, 4);
                 break;
-
             case 2:
-                GameObject GroupOfPlatforms2 = SBlocks[Random.Range(0, SBlocks.Count)].GetPooledObject();
-                if (GroupOfPlatforms2 != null)
-                {
-                    GroupOfPlatforms2.transform.position = transform.position;
-                    GroupOfPlatforms2.SetActive(true);
-                }
+                typeOfBlock = Random.Range(0, 5);
                 break;
-
             case 3:
-                GameObject GroupOfPlatforms3 = SBlocks[Random.Range(0, SBlocks.Count)].GetPooledObject();
-                if (GroupOfPlatforms3 != null)
-                {
-                    GroupOfPlatforms3.transform.position = transform.position;
-                    GroupOfPlatforms3.SetActive(true);
-                }
+                typeOfBlock = Random.Range(0, 6);
                 break;
-
             default:
+                typeOfBlock = Random.Range(0, 3);
                 break;
         }
 
-        Move();
-
+        return typeOfBlock;
     }
 
     //to move after spawn
     private void Move()
     {
-        transform.position = new Vector2(transform.position.x, transform.position.y + 20);
+        transform.position = new Vector2(transform.position.x, transform.position.y + distanceToMove);
+    }
+
+    public void AdvanceTheGame()
+    {
+        dificultyLevel++;
     }
 }
