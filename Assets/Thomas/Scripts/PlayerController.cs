@@ -46,6 +46,18 @@ public class PlayerController : MonoBehaviour
         {
             toolManager.SelectTool(KeyCode.D);
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            toolManager.SelectTool(KeyCode.Q);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            toolManager.SelectTool(KeyCode.W);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            toolManager.SelectTool(KeyCode.E);
+        }
 
         // Detectar entrada para saltar
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
