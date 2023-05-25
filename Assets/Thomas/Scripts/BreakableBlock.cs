@@ -35,7 +35,7 @@ public class BreakableBlock : MonoBehaviour
                 Debug.Log("¡Has roto el bloque con la pala!");
 
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else if (toolManager.selectedTool == ToolType.Pickaxe && blockType == BlockType.BlockS)
             {
@@ -43,7 +43,7 @@ public class BreakableBlock : MonoBehaviour
                 Debug.Log("¡Has roto el bloque con el pico!");
 
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else if (toolManager.selectedTool == ToolType.ElectricDrill && blockType == BlockType.BlockD)
             {
@@ -51,7 +51,7 @@ public class BreakableBlock : MonoBehaviour
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
 
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else if (toolManager.selectedTool == ToolType.Axe && blockType == BlockType.BlockQ)
             {
@@ -59,7 +59,7 @@ public class BreakableBlock : MonoBehaviour
                 Debug.Log("Has roto el bloque con el hacha");
 
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else if (toolManager.selectedTool == ToolType.Hammer && blockType == BlockType.BlockW)
             {
@@ -67,14 +67,14 @@ public class BreakableBlock : MonoBehaviour
                 Debug.Log("¡Has roto el bloque con el martillo!");
 
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else if (toolManager.selectedTool == ToolType.Dinamite && blockType == BlockType.BlockE)
             {
                 // Lógica para romper el bloque con el dinamites
                 Debug.Log("¡Has roto el bloque con el dinamites!");
                 // Eliminar el bloque u realizar cualquier otra acción deseada
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else
             {
@@ -83,7 +83,7 @@ public class BreakableBlock : MonoBehaviour
                 
                 // Bloquear el movimiento del jugador por un segundo
                 PlayerController playerController = FindObjectOfType<PlayerController>();
-                playerController.LockMovementForDuration(2f);
+                playerController.LockMovementForDuration(1f);
             }
         }
     }
