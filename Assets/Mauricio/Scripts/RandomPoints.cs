@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // El item de tiempo aparece cada multiplo de 10
-/*public class RandomPoints : MonoBehaviour
+public class RandomPoints : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefab del objeto a generar
     public Transform spawnPosition; // Posición de generación
@@ -64,7 +64,7 @@ using UnityEngine;
             }
         }
     }
-}*/
+}
 
 // Variante del item de tiempo apareciendo cada multiplo de 10 - NO FUNCIONA XD
 /*public class RandomPoints : MonoBehaviour
