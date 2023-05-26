@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ZoneTrigger : MonoBehaviour
+/*public class ZoneTrigger : MonoBehaviour
 {
 
     private int Score;
@@ -19,5 +19,5 @@ public class ZoneTrigger : MonoBehaviour
     {
         Score = 0;
     }
-}
+}*/
 

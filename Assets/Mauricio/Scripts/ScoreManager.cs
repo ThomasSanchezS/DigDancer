@@ -37,6 +37,7 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int powerUpMultiplier)
     {
         combo++;
+        Debug.Log("El combo es: " + combo);
         score += multiplier * powerUpMultiplier;
         UpdateScoreDisplay();
     }
