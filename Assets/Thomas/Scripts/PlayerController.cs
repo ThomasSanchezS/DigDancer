@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        animate.SetTrigger("isJumping");
     }
 
     public void LockMovementForDuration(float duration)
