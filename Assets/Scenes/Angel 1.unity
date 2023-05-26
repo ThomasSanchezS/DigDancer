@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6293507734837865101, guid: 37591b58e927bc04cae4996e6095c1b1, type: 3}
+      propertyPath: animate
+      value: 
+      objectReference: {fileID: 1353736875}
     - target: {fileID: 6293507734837865110, guid: 37591b58e927bc04cae4996e6095c1b1, type: 3}
       propertyPath: m_Sprite
       value: 

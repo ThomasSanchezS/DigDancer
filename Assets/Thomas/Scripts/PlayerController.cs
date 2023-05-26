@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isMovementLocked = false;
     private float movementLockDuration = 0f;
+    public Animator animate;
 
     public float jumpForce = 5f;
     public bool isGrounded = false;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
             if (movementLockDuration <= 0f)
             {
                 isMovementLocked = false;
+                animate.SetBool("isLocked", false);
             }
             else
             {
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
     public void LockMovementForDuration(float duration)
     {
         isMovementLocked = true;
+        animate.SetBool("isLocked", true);
         movementLockDuration = duration;
     }
 
