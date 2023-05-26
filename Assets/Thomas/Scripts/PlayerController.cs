@@ -1,5 +1,6 @@
 // PlayerController.cs
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 5f;
     public bool isGrounded = false;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         toolManager = FindObjectOfType<ToolManager>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -93,6 +96,7 @@ public class PlayerController : MonoBehaviour
         isMovementLocked = true;
         animate.SetBool("isLocked", true);
         movementLockDuration = duration;
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
