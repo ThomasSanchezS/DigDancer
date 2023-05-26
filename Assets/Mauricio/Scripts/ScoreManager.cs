@@ -14,6 +14,30 @@ public class ScoreManager : MonoBehaviour
     public delegate void ScoreChanged(int score);
     public static event ScoreChanged OnScoreChanged;
 
+    private static ScoreManager instance;
+
+    public static ScoreManager Instance
+    {
+        get { return instance; }
+    }
+
+    public int GetCombo()
+    {
+        return combo;
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Update()
     {
         if (combo == 4)
