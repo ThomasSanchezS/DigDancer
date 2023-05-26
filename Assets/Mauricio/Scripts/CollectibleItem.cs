@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CollectibleItem : MonoBehaviour
 {
-    private ScoreManager scoreManager;
+    //private ScoreManager scoreManager;
     private TimeManager timeManager;
 
-    private int powerUpMultiplier = 1;
+    //private int powerUpMultiplier = 1;
 
     private void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
+        //scoreManager = FindObjectOfType<ScoreManager>();
         timeManager = FindObjectOfType<TimeManager>();
     }
 
@@ -19,19 +19,19 @@ public class CollectibleItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            scoreManager.IncreaseScore(powerUpMultiplier);
+            //scoreManager.IncreaseScore(powerUpMultiplier);
             timeManager.IncreaseTime();
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Miss"))
         {
-            scoreManager.ResetScore();
+            /*scoreManager.ResetScore();
             if (powerUpMultiplier > 1)
             {
                 powerUpMultiplier = 1;
                 scoreManager.ApplyMultiplier(powerUpMultiplier);
             }
-            Destroy(gameObject);
+            Destroy(gameObject);*/
         }
     }
 }

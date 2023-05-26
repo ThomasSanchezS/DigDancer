@@ -11,6 +11,9 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreT;
     public TextMeshProUGUI comboT;
 
+    public delegate void ScoreChanged(int score);
+    public static event ScoreChanged OnScoreChanged;
+
     public void Update()
     {
         if (combo == 4)
@@ -40,6 +43,11 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("El combo es: " + combo);
         score += multiplier * powerUpMultiplier;
         UpdateScoreDisplay();
+
+        if (OnScoreChanged != null)
+        {
+            OnScoreChanged(score);
+        }
     }
 
     public void ResetScore()
