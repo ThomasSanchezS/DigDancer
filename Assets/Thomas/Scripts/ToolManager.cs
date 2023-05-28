@@ -129,13 +129,13 @@ public class ToolManager : MonoBehaviour
         spriteObject.transform.localScale = toolPositions[(int)selectedTool].localScale;
     }
 
-    private void DeactivateAllSprites()
+    /*private void DeactivateAllSprites()
     {
         shovelSprite.SetActive(false);
         pickaxeSprite.SetActive(false);
         electricDrillSprite.SetActive(false);
         /*axeSprite.SetActive(false);
         hammerSprite.SetActive(false);
-        dinamiteSprite.SetActive(false);*/
-    }
+        dinamiteSprite.SetActive(false);
+    }*/
 }

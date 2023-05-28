@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &163641464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 163641465}
-  m_Layer: 0
-  m_Name: Seleccion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &163641465
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163641464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.78, y: 1.67, z: 0}
-  m_LocalScale: {x: 30.239, y: 30.239, z: 30.239}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1884730114}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200659744
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +465,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1325311974, guid: 37591b58e927bc04cae4996e6095c1b1, type: 3}
+      propertyPath: spawnPosition
+      value: 
+      objectReference: {fileID: 1528165469}
     - target: {fileID: 6293507734837865097, guid: 37591b58e927bc04cae4996e6095c1b1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1251,7 +1224,6 @@ Transform:
   - {fileID: 200659745}
   - {fileID: 1634376330}
   - {fileID: 1481764378}
-  - {fileID: 163641465}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
