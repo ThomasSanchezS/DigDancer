@@ -14,14 +14,17 @@ public class ScoreManager : MonoBehaviour
     public delegate void ScoreChanged(int score);
     public static event ScoreChanged OnScoreChanged;
 
-    private static ScoreManager instance;
+    public delegate void ComboChanged(int score);
+    public static event ComboChanged OnComboChanged;
 
+    private static ScoreManager instance;
+        
     public static ScoreManager Instance
     {
         get { return instance; }
     }
 
-    public int GetCombo()
+    public int GetCurrentCombo()
     {
         return combo;
     }
@@ -71,6 +74,11 @@ public class ScoreManager : MonoBehaviour
         if (OnScoreChanged != null)
         {
             OnScoreChanged(score);
+        }
+
+        if (OnComboChanged != null)
+        {
+            OnComboChanged(combo);
         }
     }
 

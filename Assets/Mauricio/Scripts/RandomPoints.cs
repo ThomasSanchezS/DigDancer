@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// El item de tiempo aparece cada multiplo de 10
-public class RandomPoints : MonoBehaviour
+// El item de tiempo aparece cada multiplo de 10 score
+/*public class RandomPoints : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefab del objeto a generar
     public Transform spawnPosition; // Posición de generación
     public GameObject player; // Objeto del personaje
 
-    private int pointsThreshold = 10; // Umbral de puntos para generar el objeto
+    private int pointsThreshold = 50; // Umbral de puntos para generar el objeto
     private float yOffset = 2f; // Desplazamiento en el eje Y
+    private float despawnDelay = 5f; // Tiempo de espera para despawn
 
     private GameObject spawnedObject; // Referencia al objeto generado
 
@@ -22,21 +23,34 @@ public class RandomPoints : MonoBehaviour
 
     private void CheckScore(int score)
     {
-        if (score % pointsThreshold == 0)
+        if(score % pointsThreshold == 0 && spawnedObject == null)
         {
-            if (spawnedObject == null)
-            {
-                // Generar una instancia del objeto en la posición establecida
-                spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
+            // Generar una instancia del objeto en la posición establecida
+            spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
 
-                // Establecer el objeto generado como hijo del jugador
-                spawnedObject.transform.SetParent(player.transform);
+            // Establecer el objeto generado como hijo del jugador
+            spawnedObject.transform.SetParent(player.transform);
 
-                // Ajustar la posición local del objeto generado
-                Vector3 localPosition = spawnedObject.transform.localPosition;
-                localPosition.y += yOffset;
-                spawnedObject.transform.localPosition = localPosition;
-            }
+            // Ajustar la posición local del objeto generado
+            Vector3 localPosition = spawnedObject.transform.localPosition;
+            localPosition.y += yOffset;
+            spawnedObject.transform.localPosition = localPosition;
+
+            // Iniciar la coroutine para despawn después del tiempo especificado
+            StartCoroutine(DelayedDespawn());
+        }
+    }
+
+    private IEnumerator DelayedDespawn()
+    {
+        yield return new WaitForSeconds(despawnDelay);
+
+        if (spawnedObject != null)
+        {
+            // Desvincular el objeto generado del jugador
+            spawnedObject.transform.SetParent(null);
+            Destroy(spawnedObject);
+            spawnedObject = null;
         }
     }
 
@@ -64,9 +78,11 @@ public class RandomPoints : MonoBehaviour
             }
         }
     }
-}
+}*/
 
-// Variante del item de tiempo apareciendo cada multiplo de 10 - NO FUNCIONA XD
+// El item de tiempo aparece cada multiplo de x6
+
+// Variante del item de tiempo apareciendo cada multiplo de 10 - NO FUNCIONA XD 
 /*public class RandomPoints : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefab del objeto a generar
@@ -188,32 +204,80 @@ public class RandomPoints : MonoBehaviour
 }*/
 
 //El item de tiempo aparece cada "Combo x6" y cada x segundos mientras se siga en el "Combo x6" - NO FUNCIONA XD
-/*public class RandomPoints : MonoBehaviour
+public class RandomPoints : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefab del objeto a generar
     public Transform spawnPosition; // Posición de generación
     public GameObject player; // Objeto del personaje
 
-    private int comboThreshold = 6; // Umbral de combo para generar el objeto
     private float yOffset = 2f; // Desplazamiento en el eje Y
+    private float despawnDelay = 5f; // Tiempo de espera para despawn
+    private float generateInterval = 10f; // Intervalo de generación después de alcanzar combo x6
 
-    private float timer = 0f; // Temporizador para controlar el tiempo entre apariciones
-    private float spawnInterval = 10f; // Intervalo de tiempo entre apariciones en segundos
+    private GameObject spawnedObject; // Referencia al objeto generado
+    private bool generateEnabled = true; // Indicador de si la generación está habilitada
+    private bool combo4Generated = false; // Indicador de si el objeto combo 4 ya ha sido generado
+    private bool combo8Generated = false; // Indicador de si el objeto combo 8 ya ha sido generado
+    private bool combo12Generated = false; // Indicador de si el objeto combo 6 ya ha sido generado
 
-    private void Start()
+
+    private void Update()
     {
-        // Suscribirse al evento OnScoreChanged del ScoreManager
-        ScoreManager.OnScoreChanged += CheckCombo;
+        int currentCombo = ScoreManager.Instance.GetCurrentCombo();
+
+        if (currentCombo == 0)
+        {
+            combo4Generated = false;
+            combo8Generated = false;
+        }
+        if (currentCombo == 4 && !combo4Generated)
+        {
+            GenerateObject();
+            combo4Generated = true;
+        }
+        else if (currentCombo == 8 && !combo8Generated)
+        {
+            GenerateObject();
+            combo8Generated = true;
+        }
+        else if (currentCombo == 12 && !combo12Generated)
+        {
+            GenerateObject();
+            combo12Generated = true;
+            StartCoroutine(GenerateObjectPeriodically());
+        }
+
+        if (spawnedObject != null)
+        {
+            // Detectar si se presiona la tecla Espacio
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Desvincular el objeto generado del jugador
+                spawnedObject.transform.SetParent(null);
+                spawnedObject = null;
+            }
+            // Detectar si se suelta la tecla Espacio
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                // Vincular nuevamente el objeto generado como hijo del jugador
+                spawnedObject.transform.SetParent(player.transform);
+
+                // Ajustar la posición local del objeto generado
+                Vector3 localPosition = spawnedObject.transform.localPosition;
+                localPosition.y += yOffset;
+                spawnedObject.transform.localPosition = localPosition;
+            }
+        }
     }
 
-    private void CheckCombo(int score)
+    private void GenerateObject()
     {
-        if (score % comboThreshold == 0)
+        if (spawnedObject == null)
         {
             // Generar una instancia del objeto en la posición establecida
-            GameObject spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
+            spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
 
-            // Establecer el objeto generado como hijo del personaje
+            // Establecer el objeto generado como hijo del jugador
             spawnedObject.transform.SetParent(player.transform);
 
             // Ajustar la posición local del objeto generado
@@ -221,29 +285,37 @@ public class RandomPoints : MonoBehaviour
             localPosition.y += yOffset;
             spawnedObject.transform.localPosition = localPosition;
 
-            // Desuscribirse del evento después de generar el objeto
-            ScoreManager.OnScoreChanged -= CheckCombo;
+            // Iniciar la coroutine para despawn después del tiempo especificado
+            StartCoroutine(DelayedDespawn());
         }
     }
 
-    private void Update()
+    private IEnumerator DelayedDespawn()
     {
-        // Incrementar el temporizador
-        timer += Time.deltaTime;
+        yield return new WaitForSeconds(despawnDelay);
 
-        // Verificar si ha pasado el tiempo suficiente para generar el objeto
-        if (timer >= spawnInterval)
+        if (spawnedObject != null)
         {
-            // Generar una instancia del objeto en la posición establecida
-            GameObject spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
+            // Desvincular el objeto generado del jugador
+            spawnedObject.transform.SetParent(null);
+            Destroy(spawnedObject);
+            spawnedObject = null;
 
-            // Ajustar la posición local del objeto generado
-            Vector3 localPosition = spawnedObject.transform.localPosition;
-            localPosition.y += yOffset;
-            spawnedObject.transform.localPosition = localPosition;
-
-            // Reiniciar el temporizador
-            timer = 0f;
+            if (ScoreManager.Instance.GetCurrentCombo() >= 12)
+            {
+                generateEnabled = false;
+                yield return new WaitForSeconds(generateInterval);
+                generateEnabled = true;
+            }
         }
     }
-}*/
+
+    private IEnumerator GenerateObjectPeriodically()
+    {
+        while (generateEnabled)
+        {
+            yield return new WaitForSeconds(generateInterval);
+            GenerateObject();
+        }
+    }
+}
