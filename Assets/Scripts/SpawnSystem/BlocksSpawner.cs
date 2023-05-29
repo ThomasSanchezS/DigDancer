@@ -33,7 +33,7 @@ public class BlocksSpawner : MonoBehaviour
         {
             Spawn();
         }
-       // AdvanceTheGame();
+      AdvanceTheGame();
     }
 
     //Spawn a block
