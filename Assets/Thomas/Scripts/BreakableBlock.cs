@@ -21,9 +21,9 @@ public class BreakableBlock : MonoBehaviour
     private int powerUpMultiplier = 1;
     public Animator playerAnimator;
 
-    public AudioSource AQ;
-    public AudioSource SW;
-    public AudioSource DE;
+   // public AudioSource AQ;
+   // public AudioSource SW;
+   // public AudioSource DE;
 
     private void Start() {
         
@@ -45,7 +45,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con la pala
                 Debug.Log("¡Has roto el bloque con la pala!");
-                AQ.Play();
+               // AQ.Play();
                 playerAnimator.SetTrigger("ToolA");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -57,7 +57,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el pico
                 Debug.Log("¡Has roto el bloque con el pico!");
-                SW.Play();
+               // SW.Play();
                 playerAnimator.SetTrigger("ToolS");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -69,7 +69,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el martillo eléctrico
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
-                DE.Play();
+                //DE.Play();
                 playerAnimator.SetTrigger("ToolD");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -82,7 +82,7 @@ public class BreakableBlock : MonoBehaviour
                 playerAnimator.SetTrigger("ToolA");
                  // Lógica para romper el bloque con el hacha
                 Debug.Log("Has roto el bloque con el hacha");
-                AQ.Play();
+               // AQ.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -94,7 +94,7 @@ public class BreakableBlock : MonoBehaviour
                 // Lógica para romper el bloque con el martillo
                 playerAnimator.SetTrigger("ToolS");
                 Debug.Log("¡Has roto el bloque con el martillo!");
-                SW.Play();
+               // SW.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -106,7 +106,7 @@ public class BreakableBlock : MonoBehaviour
                 // Lógica para romper el bloque con el dinamites
                 Debug.Log("¡Has roto el bloque con el dinamites!");
                 playerAnimator.SetTrigger("ToolD");
-                DE.Play();
+                // DE.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
