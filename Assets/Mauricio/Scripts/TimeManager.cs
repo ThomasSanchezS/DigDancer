@@ -13,15 +13,15 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
-
         time -= Time.deltaTime;
         timeT.text = "Time: " + time.ToString("f0");
 
         if (time < 0)
         {
-            Debug.Log("Se acabo el tiempo");
-            time = 0;
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            int puntajeFinal = scoreManager.GetScore(); // Obtener el puntaje final desde el ScoreManager
+            PlayerPrefs.SetInt("PuntajeFinal", puntajeFinal);
+            PlayerPrefs.Save();
             SceneManager.LoadScene("Game Over");
         }
     }

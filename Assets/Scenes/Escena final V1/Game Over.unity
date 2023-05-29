@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afa8fc0395ab1c4a897dae5ff323cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntajefinal: {fileID: 1492732115}
+  puntajeFinalText: {fileID: 1492732115}
 --- !u!1 &1492732112
 GameObject:
   m_ObjectHideFlags: 0
