@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public void Play(){
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("V2 Mauricio");
     }
 }
