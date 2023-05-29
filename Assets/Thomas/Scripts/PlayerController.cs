@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = false;
     SpriteRenderer spriteRenderer;
 
+    public AudioSource Fail;
+
     private void Start()
     {
         toolManager = FindObjectOfType<ToolManager>();
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
         isMovementLocked = true;
         animate.SetBool("isLocked", true);
         movementLockDuration = duration;
-       
+        Fail.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
