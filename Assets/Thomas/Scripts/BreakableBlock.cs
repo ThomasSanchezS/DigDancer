@@ -19,10 +19,13 @@ public class BreakableBlock : MonoBehaviour
     private ScoreManager scoreManager;
     //private TimeManager timeManager;
     private int powerUpMultiplier = 1;
+    public Animator playerAnimator;
+
 
     private void Start() {
         
         player = GameObject.FindGameObjectWithTag("Player");
+        playerAnimator = player.GetComponentInChildren<Animator>();
         scoreManager = FindObjectOfType<ScoreManager>();
         //timeManager = FindObjectOfType<TimeManager>();
     }
@@ -39,7 +42,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con la pala
                 Debug.Log("¡Has roto el bloque con la pala!");
-
+                playerAnimator.SetTrigger("ToolA");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -50,7 +53,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el pico
                 Debug.Log("¡Has roto el bloque con el pico!");
-
+                playerAnimator.SetTrigger("ToolS");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -61,7 +64,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el martillo eléctrico
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
-
+                 playerAnimator.SetTrigger("ToolD");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
