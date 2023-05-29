@@ -73,6 +73,7 @@ public class BreakableBlock : MonoBehaviour
             }
             else if (toolManager.selectedTool == ToolType.Axe && blockType == BlockType.BlockQ)
             {
+                playerAnimator.SetTrigger("ToolA");
                  // Lógica para romper el bloque con el hacha
                 Debug.Log("Has roto el bloque con el hacha");
 
@@ -85,6 +86,7 @@ public class BreakableBlock : MonoBehaviour
             else if (toolManager.selectedTool == ToolType.Hammer && blockType == BlockType.BlockW)
             {
                 // Lógica para romper el bloque con el martillo
+                playerAnimator.SetTrigger("ToolS");
                 Debug.Log("¡Has roto el bloque con el martillo!");
 
                 // Incrementar puntos
@@ -97,7 +99,7 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el dinamites
                 Debug.Log("¡Has roto el bloque con el dinamites!");
-
+                playerAnimator.SetTrigger("ToolD");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
