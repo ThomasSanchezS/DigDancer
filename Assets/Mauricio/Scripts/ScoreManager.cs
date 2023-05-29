@@ -101,8 +101,15 @@ public class ScoreManager : MonoBehaviour
         scoreT.text = "Score: " + score.ToString();
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void PuntajeFinal()
     {
-        int PuntajeFinal = score;
+        int puntajeFinal = score;
+        PlayerPrefs.SetInt("PuntajeFinal", score);
+        PlayerPrefs.Save();
     }
 }

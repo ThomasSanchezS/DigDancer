@@ -5,12 +5,11 @@ using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    private ScoreManager scoreManager;
-    public TextMeshProUGUI puntajefinal;
+    public TextMeshProUGUI puntajeFinalText;
 
     private void Start()
-    { 
-        scoreManager = FindObjectOfType<ScoreManager>();
-        puntajefinal.text = "Tu puntaje final fue: " + scoreManager.scoreT.ToString();
+    {
+        int puntajeFinal = PlayerPrefs.GetInt("PuntajeFinal", 0);
+        puntajeFinalText.text = "Tu puntaje final fue: " + puntajeFinal;
     }
 }

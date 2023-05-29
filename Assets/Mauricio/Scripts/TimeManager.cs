@@ -9,6 +9,7 @@ public class TimeManager : MonoBehaviour
     public float time;
     public int extra;
     public TextMeshProUGUI timeT;
+    private ScoreManager scoreManager;
 
     private void Update()
     {
@@ -17,8 +18,10 @@ public class TimeManager : MonoBehaviour
 
         if (time < 0)
         {
-            Debug.Log("Se acabo el tiempo");
-            time = 0;
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            int puntajeFinal = scoreManager.GetScore(); // Obtener el puntaje final desde el ScoreManager
+            PlayerPrefs.SetInt("PuntajeFinal", puntajeFinal);
+            PlayerPrefs.Save();
             SceneManager.LoadScene("Game Over");
         }
     }
