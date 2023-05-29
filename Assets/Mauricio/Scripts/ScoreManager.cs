@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -47,20 +48,29 @@ public class ScoreManager : MonoBehaviour
         {
             multiplier = 2;
             comboT.text = "Combo x" + multiplier.ToString();
+            comboT.transform.localScale = Vector3.zero;
+            comboT.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.2f);
         }
         else if (combo == 8)
         {
             multiplier = 4;
             comboT.text = "Combo x" + multiplier.ToString();
+            comboT.transform.localScale = Vector3.zero;
+            comboT.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.2f);
+            //comboT.transform.DOScale(Vector3.zero, 0.2f).SetDelay(1f);
         }
         else if (combo >= 12)
         {
             multiplier = 6;
             comboT.text = "Combo x" + multiplier.ToString();
+            comboT.transform.localScale = Vector3.zero;
+            comboT.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.2f);
+            //comboT.transform.DOScale(Vector3.zero, 0.2f).SetDelay(1f);
         }
         else
         {
-            comboT.text = " ";
+            comboT.transform.DOScale(Vector3.zero, 0.2f).SetDelay(1f);
+            //comboT.text = " ";
         }
     }
 
