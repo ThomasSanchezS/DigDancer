@@ -9,12 +9,9 @@ public class TimeManager : MonoBehaviour
     public float time;
     public int extra;
     public TextMeshProUGUI timeT;
-    private ScoreManager scoreManager;
 
     private void Update()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
-
         time -= Time.deltaTime;
         timeT.text = "Time: " + time.ToString("f0");
 

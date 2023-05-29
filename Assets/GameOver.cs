@@ -11,6 +11,6 @@ public class GameOver : MonoBehaviour
     private void Start()
     { 
         scoreManager = FindObjectOfType<ScoreManager>();
-        puntajefinal.text = "Tu puntaje final fue: " + scoreManager;
+        puntajefinal.text = "Tu puntaje final fue: " + scoreManager.scoreT.ToString();
     }
 }
