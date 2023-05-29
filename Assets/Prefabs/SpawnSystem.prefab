@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37515fe132dc7b440bea0f6a74b6fb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToMove: -1
+  distanceToMove: -2
   numberOfBlocksSpawnPerWave: 20
   BlockPools:
   - {fileID: 1631868193845955084}
