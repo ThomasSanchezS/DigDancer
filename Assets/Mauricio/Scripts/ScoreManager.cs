@@ -100,4 +100,9 @@ public class ScoreManager : MonoBehaviour
     {
         scoreT.text = "Score: " + score.ToString();
     }
+
+    public void PuntajeFinal()
+    {
+        int PuntajeFinal = score;
+    }
 }
