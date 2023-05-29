@@ -33,6 +33,7 @@ public class BlocksSpawner : MonoBehaviour
         {
             Spawn();
         }
+       // AdvanceTheGame();
     }
 
     //Spawn a block
@@ -55,17 +56,17 @@ public class BlocksSpawner : MonoBehaviour
 
         switch (dificultyLevel)
         {
+            case 0:
+                typeOfBlock = Random.Range(0, 3);
+                break;
             case 1:
                 typeOfBlock = Random.Range(0, 4);
                 break;
             case 2:
                 typeOfBlock = Random.Range(0, 5);
                 break;
-            case 3:
-                typeOfBlock = Random.Range(0, 6);
-                break;
             default:
-                typeOfBlock = Random.Range(0, 3);
+                typeOfBlock = Random.Range(0, 6);
                 break;
         }
 

@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     private static LevelManager instance;
 
+    private BlocksSpawner  bS= new BlocksSpawner();
+
     public static LevelManager Instance
     {
         get { return instance; }
@@ -26,8 +28,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        bS= GetComponent<BlocksSpawner>();
         level= 0;
     }
-
 
 }
