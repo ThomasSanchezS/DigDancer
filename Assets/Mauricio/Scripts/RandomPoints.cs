@@ -211,9 +211,9 @@ public class RandomPoints : MonoBehaviour
     public Transform spawnPosition; // Posición de generación
     public GameObject player; // Objeto del personaje
 
-    private float yOffset = .3f; // Desplazamiento en el eje Y
+    private float yOffset = .25f; // Desplazamiento en el eje Y
     private float despawnDelay = 5f; // Tiempo de espera para despawn
-    private float generateInterval = 10f; // Intervalo de generación después de alcanzar combo x6
+    private float generateInterval = 20f; // Intervalo de generación después de alcanzar combo x6
 
     private GameObject spawnedObject; // Referencia al objeto generado
     private bool generateEnabled = true; // Indicador de si la generación está habilitada

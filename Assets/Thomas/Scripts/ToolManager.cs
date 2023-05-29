@@ -58,12 +58,12 @@ public class ToolManager : MonoBehaviour
     public Transform selectionIndicator; // Indicador de selección
 
     //public Transform toolHolder; // Transformación para colocar los sprites seleccionados
-    public GameObject shovelSprite;
-    public GameObject pickaxeSprite;
-    public GameObject electricDrillSprite;
-    //public GameObject axeSprite;
-    //public GameObject hammerSprite;
-    //public GameObject dinamiteSprite;
+    public GameObject A;
+    public GameObject S;
+    public GameObject D;
+    public GameObject Q;
+    public GameObject W;
+    public GameObject E;
 
     private void Start()
     {
@@ -81,33 +81,33 @@ public class ToolManager : MonoBehaviour
             case KeyCode.A:
                 selectedTool = ToolType.Shovel;
                 //shovelSprite.SetActive(true);
-                PlaceSprite(shovelSprite);
+                PlaceSprite(A);
                 break;
             case KeyCode.S:
                 selectedTool = ToolType.Pickaxe;
                 //pickaxeSprite.SetActive(true);
-                PlaceSprite(pickaxeSprite);
+                PlaceSprite(S);
                 break;
             case KeyCode.D:
                 selectedTool = ToolType.ElectricDrill;
                 //electricDrillSprite.SetActive(true);
-                PlaceSprite(electricDrillSprite);
+                PlaceSprite(D);
                 break;
-            /*case KeyCode.Q:
+            case KeyCode.Q:
                 selectedTool = ToolType.Axe;
-                axeSprite.SetActive(true);
-                PlaceSprite(axeSprite);
+                Q.SetActive(true);
+                PlaceSprite(Q);
                 break;
             case KeyCode.W:
                 selectedTool = ToolType.Hammer;
-                hammerSprite.SetActive(true);
-                PlaceSprite(hammerSprite);
+                W.SetActive(true);
+                PlaceSprite(W);
                 break;
             case KeyCode.E:
                 selectedTool = ToolType.Dinamite;
-                dinamiteSprite.SetActive(true);
-                PlaceSprite(dinamiteSprite);
-                break;*/
+                E.SetActive(true);
+                PlaceSprite(E);
+                break;
         }
 
         selectionIndicator.position = toolPositions[(int)selectedTool].position;
