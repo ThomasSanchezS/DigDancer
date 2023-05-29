@@ -46,52 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeOfPooledBlocks: AD
   BlockToSpawn: {fileID: 2800539760426680553, guid: 44948dd6e84bbac4595f4cdcf3bd25e1, type: 3}
---- !u!1 &1631868192235017864
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1631868192235017865}
-  - component: {fileID: 1631868192235017866}
-  m_Layer: 0
-  m_Name: PoolADS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1631868192235017865
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631868192235017864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1631868193123945103}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1631868192235017866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631868192235017864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad169d1188a9d14cb2aa14eb8aaa605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfPooledBlocks: ASD
-  BlockToSpawn: {fileID: 4715034902376614762, guid: a723051c7a9ba6644a67511c4895e6bc, type: 3}
 --- !u!1 &1631868192456782607
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +239,6 @@ Transform:
   - {fileID: 1631868193910961907}
   - {fileID: 1631868192232050457}
   - {fileID: 1631868193631577269}
-  - {fileID: 1631868192235017865}
   m_Father: {fileID: 1631868192456782600}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
