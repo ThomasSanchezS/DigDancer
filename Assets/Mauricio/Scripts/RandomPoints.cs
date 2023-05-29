@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 // El item de tiempo aparece cada multiplo de 10 score
 /*public class RandomPoints : MonoBehaviour
@@ -210,7 +211,7 @@ public class RandomPoints : MonoBehaviour
     public Transform spawnPosition; // Posición de generación
     public GameObject player; // Objeto del personaje
 
-    private float yOffset = 2f; // Desplazamiento en el eje Y
+    private float yOffset = .3f; // Desplazamiento en el eje Y
     private float despawnDelay = 5f; // Tiempo de espera para despawn
     private float generateInterval = 10f; // Intervalo de generación después de alcanzar combo x6
 
@@ -252,6 +253,10 @@ public class RandomPoints : MonoBehaviour
             // Detectar si se presiona la tecla Espacio
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                // Pausar el salto y el parpadeo utilizando DOTween
+                spawnedObject.transform.DOPause();
+                spawnedObject.GetComponent<Renderer>().material.DOPause();
+
                 // Desvincular el objeto generado del jugador
                 spawnedObject.transform.SetParent(null);
                 spawnedObject = null;
@@ -266,6 +271,20 @@ public class RandomPoints : MonoBehaviour
                 Vector3 localPosition = spawnedObject.transform.localPosition;
                 localPosition.y += yOffset;
                 spawnedObject.transform.localPosition = localPosition;
+
+                // Calcular la posición de destino para el salto
+                float jumpHeight = 2f;
+                Vector3 jumpDestination = spawnedObject.transform.localPosition + new Vector3(0f, jumpHeight, 0f);
+
+                // Aplicar el movimiento hacia arriba y abajo utilizando DOTween
+                float jumpDuration = 2f;
+                spawnedObject.transform.DOLocalJump(jumpDestination, jumpHeight, 1, jumpDuration).SetLoops(-1, LoopType.Yoyo);
+
+                // Iniciar el parpadeo utilizando DOTween
+                Color originalColor = spawnedObject.GetComponent<Renderer>().material.color;
+                Color blinkingColor = Color.red; // Color parpadeante
+                float blinkingDuration = 0.5f;
+                spawnedObject.GetComponent<Renderer>().material.DOBlendableColor(blinkingColor, blinkingDuration).SetLoops(-1, LoopType.Yoyo);
             }
         }
     }
@@ -296,6 +315,9 @@ public class RandomPoints : MonoBehaviour
 
         if (spawnedObject != null)
         {
+            spawnedObject.transform.DOKill();
+            spawnedObject.GetComponent<Renderer>().material.DOKill();
+
             // Desvincular el objeto generado del jugador
             spawnedObject.transform.SetParent(null);
             Destroy(spawnedObject);
