@@ -9,6 +9,6 @@ public class AnimationScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.DOMove(new Vector2(500, 350), duration);
+        transform.DOMove(new Vector2(800, 550), duration);
     }
 }

@@ -97,6 +97,9 @@ MonoBehaviour:
   blockType: 5
   reach: 4
   playerAnimator: {fileID: 0}
+  AQ: {fileID: 461555850156472689, guid: aa36d34113fe0994b960fa1e1e558d19, type: 3}
+  SW: {fileID: 779709462841707312, guid: 2f3e1bc6e709362468bd504980b005b4, type: 3}
+  DE: {fileID: 5646169370990624339, guid: ea421b0b1bf89ad4c8a088a87e18d96a, type: 3}
 --- !u!1 &5455709048160829460
 GameObject:
   m_ObjectHideFlags: 0
