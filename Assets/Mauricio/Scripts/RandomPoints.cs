@@ -346,8 +346,8 @@ using DG.Tweening;
 // El item aparece en un rango de tiempo
 public class RandomPoints : MonoBehaviour
 {
-    public float minSpawn, maxSpawn;
-    private float despawnDelay = 3f;
+    private float minSpawn = 10f, maxSpawn = 30f;
+    private float despawnDelay = 2f;
     public GameObject itemPrefab;
     public Transform spawnPosition;
     public GameObject player;
@@ -361,15 +361,13 @@ public class RandomPoints : MonoBehaviour
     {
         if (spawnedObject != null)
         {
-            // Detectar si se presiona la tecla Espacio
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Desvincular el objeto generado del jugador
                 spawnedObject.transform.SetParent(null);
                 spawnedObject = null;
-                objectTaken = true; // Marcar el objeto como tomado
+                objectTaken = false; // Marcar el objeto como tomado
             }
-            // Detectar si se suelta la tecla Espacio
             else if (Input.GetKeyUp(KeyCode.Space))
             {
                 // Vincular nuevamente el objeto generado como hijo del jugador
@@ -378,16 +376,14 @@ public class RandomPoints : MonoBehaviour
                 // Ajustar la posición local del objeto generado
                 Vector3 localPosition = spawnedObject.transform.localPosition;
                 localPosition.y += yOffset;
-                spawnedObject.transform.localPosition = localPosition;               
+                spawnedObject.transform.localPosition = localPosition;
             }
         }
-        else
+
+        if (!objectTaken)
         {
-            if (objectTaken)
-            {
-                StartCoroutine(SpawnTime());
-                objectTaken = false; // Restablecer la variable de objeto tomado
-            }
+            StartCoroutine(SpawnTime());
+            objectTaken = true; // Restablecer la variable de objeto tomado
         }
     }
 
@@ -407,13 +403,11 @@ public class RandomPoints : MonoBehaviour
             spawnedObject.transform.SetParent(null);
             Destroy(spawnedObject);
             spawnedObject = null;
-
         }
     }
 
     private void GenerateObject()
     {
-
         if (spawnedObject == null)
         {
             // Generar una instancia del objeto en la posición establecida
@@ -431,5 +425,4 @@ public class RandomPoints : MonoBehaviour
             StartCoroutine(DespawnTime());
         }
     }
-
 }
