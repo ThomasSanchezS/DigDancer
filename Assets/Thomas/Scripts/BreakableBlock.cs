@@ -21,9 +21,12 @@ public class BreakableBlock : MonoBehaviour
     private int powerUpMultiplier = 1;
     public Animator playerAnimator;
 
+    public AudioClip audioClip;
     public AudioSource AQ;
     public AudioSource SW;
     public AudioSource DE;
+
+    public ParticleSystem particulas;
 
     private void Start() {
         
@@ -45,7 +48,13 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con la pala
                 Debug.Log("¡Has roto el bloque con la pala!");
-                AQ.Play();
+                AQ.gameObject.SetActive(true);
+                if (AQ != null && audioClip != null)
+                {
+                    AQ.PlayOneShot(audioClip);
+                }
+                particulas.gameObject.SetActive(true);  // Activa el componente ParticleSystem
+                particulas.Play();
                 playerAnimator.SetTrigger("ToolA");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -57,7 +66,9 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el pico
                 Debug.Log("¡Has roto el bloque con el pico!");
+                SW.gameObject.SetActive(true);  // Activa el componente AudioSource
                 SW.Play();
+                particulas.Play();
                 playerAnimator.SetTrigger("ToolS");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -69,7 +80,9 @@ public class BreakableBlock : MonoBehaviour
             {
                 // Lógica para romper el bloque con el martillo eléctrico
                 Debug.Log("¡Has roto el bloque con el martillo eléctrico!");
+                DE.gameObject.SetActive(true);  // Activa el componente AudioSource
                 DE.Play();
+                particulas.Play();
                 playerAnimator.SetTrigger("ToolD");
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
@@ -82,7 +95,9 @@ public class BreakableBlock : MonoBehaviour
                 playerAnimator.SetTrigger("ToolA");
                  // Lógica para romper el bloque con el hacha
                 Debug.Log("Has roto el bloque con el hacha");
+                AQ.gameObject.SetActive(true);  // Activa el componente AudioSource
                 AQ.Play();
+                particulas.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -94,7 +109,9 @@ public class BreakableBlock : MonoBehaviour
                 // Lógica para romper el bloque con el martillo
                 playerAnimator.SetTrigger("ToolS");
                 Debug.Log("¡Has roto el bloque con el martillo!");
+                SW.gameObject.SetActive(true);  // Activa el componente AudioSource
                 SW.Play();
+                particulas.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
@@ -106,7 +123,9 @@ public class BreakableBlock : MonoBehaviour
                 // Lógica para romper el bloque con el dinamites
                 Debug.Log("¡Has roto el bloque con el dinamites!");
                 playerAnimator.SetTrigger("ToolD");
+                DE.gameObject.SetActive(true);  // Activa el componente AudioSource
                 DE.Play();
+                particulas.Play();
                 // Incrementar puntos
                 scoreManager.IncreaseScore(powerUpMultiplier);
 
