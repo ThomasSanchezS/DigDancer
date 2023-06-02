@@ -205,7 +205,7 @@ using DG.Tweening;
 }*/
 
 //El item de tiempo aparece cada "Combo x6" y cada x segundos mientras se siga en el "Combo x6" - NO FUNCIONA XD
-public class RandomPoints : MonoBehaviour
+/*public class RandomPoints : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefab del objeto a generar
     public Transform spawnPosition; // Posición de generación
@@ -291,6 +291,7 @@ public class RandomPoints : MonoBehaviour
 
     private void GenerateObject()
     {
+
         if (spawnedObject == null)
         {
             // Generar una instancia del objeto en la posición establecida
@@ -338,6 +339,90 @@ public class RandomPoints : MonoBehaviour
         {
             yield return new WaitForSeconds(generateInterval);
             GenerateObject();
+        }
+    }
+}*/
+
+// El item aparece en un rango de tiempo
+public class RandomPoints : MonoBehaviour
+{
+    private float minSpawn = 10f, maxSpawn = 30f;
+    private float despawnDelay = 2f;
+    public GameObject itemPrefab;
+    public Transform spawnPosition;
+    public GameObject player;
+
+    private float yOffset = .25f; // Desplazamiento en el eje Y
+    private GameObject spawnedObject; // Referencia al objeto generado
+    private bool generateEnabled = true; // Indicador de si la generación está habilitada
+    private bool objectTaken = false; // Variable para controlar si el objeto ha sido tomado
+
+    private void Update()
+    {
+        if (spawnedObject != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Desvincular el objeto generado del jugador
+                spawnedObject.transform.SetParent(null);
+                spawnedObject = null;
+                objectTaken = false; // Marcar el objeto como tomado
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                // Vincular nuevamente el objeto generado como hijo del jugador
+                spawnedObject.transform.SetParent(player.transform);
+
+                // Ajustar la posición local del objeto generado
+                Vector3 localPosition = spawnedObject.transform.localPosition;
+                localPosition.y += yOffset;
+                spawnedObject.transform.localPosition = localPosition;
+            }
+        }
+
+        if (!objectTaken)
+        {
+            StartCoroutine(SpawnTime());
+            objectTaken = true; // Restablecer la variable de objeto tomado
+        }
+    }
+
+    IEnumerator SpawnTime()
+    {
+        yield return new WaitForSeconds(Random.Range(minSpawn, maxSpawn));
+        GenerateObject();
+    }
+
+    private IEnumerator DespawnTime()
+    {
+        yield return new WaitForSeconds(despawnDelay);
+
+        if (spawnedObject != null)
+        {
+            // Desvincular el objeto generado del jugador
+            spawnedObject.transform.SetParent(null);
+            Destroy(spawnedObject);
+            spawnedObject = null;
+        }
+    }
+
+    private void GenerateObject()
+    {
+        if (spawnedObject == null)
+        {
+            // Generar una instancia del objeto en la posición establecida
+            spawnedObject = Instantiate(itemPrefab, spawnPosition.position, Quaternion.identity);
+
+            // Establecer el objeto generado como hijo del jugador
+            spawnedObject.transform.SetParent(player.transform);
+
+            // Ajustar la posición local del objeto generado
+            Vector3 localPosition = spawnedObject.transform.localPosition;
+            localPosition.y += yOffset;
+            spawnedObject.transform.localPosition = localPosition;
+
+            // Iniciar la coroutine para despawn después del tiempo especificado
+            StartCoroutine(DespawnTime());
         }
     }
 }
